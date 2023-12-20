@@ -1,28 +1,46 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { firebaseConfig } from "./firebaseConfig";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Login = () => {
     const app = initializeApp(firebaseConfig);
     const navigate = useNavigate();
+    const location = useLocation();
+    const page = location.pathname === "/login" ? true : false;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [user, setUser] = useState(false);
+    const [emailUsed, setEmailUsed] = useState(false);
     const auth = getAuth();
-    // console.log(auth);
     const onSignIn = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((auth) => {
-                if (auth) {
-                    navigate("/dashboard");
-                }
-            })
-            .catch((e) => {
-                setUser(true);
-            });
+        if (page) {
+            signInWithEmailAndPassword(auth, email, password)
+                .then((auth) => {
+                    if (auth) {
+                        navigate("/dashboard");
+                    }
+                })
+                .catch((e) => {
+                    setUser(true);
+                });
+        } else {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((auth) => {
+                    if (auth) {
+                        navigate("/dashboard");
+                    }
+                })
+                .catch((error) => {
+                    setEmailUsed(true);
+                });
+        }
     };
 
     const emailChange = (e) => {
@@ -36,7 +54,7 @@ const Login = () => {
     return (
         <div className="login">
             <div className="holder">
-                <h1 className="text-white">Sign In</h1>
+                <h1 className="text-white">{page ? "Sign in" : "Register"}</h1>
                 <br />
                 <form>
                     <input
@@ -57,31 +75,36 @@ const Login = () => {
                         className="btn btn-danger btn-block"
                         onClick={onSignIn}
                     >
-                        Sign In
+                        {page ? "Sign in" : "Register"}
                     </button>
                     <br />
-                    <div className="form-check">
-                        <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="flexCheckDefault"
-                        />
-                        <label
-                            className="form-check-label text-white"
-                            htmlFor="flexCheckDefault"
-                        >
-                            Remember Me
-                        </label>
-                    </div>
+                    {page && (
+                        <div className="form-check">
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="flexCheckDefault"
+                            />
+                            <label
+                                className="form-check-label text-white"
+                                htmlFor="flexCheckDefault"
+                            >
+                                Remember Me
+                            </label>
+                        </div>
+                    )}
                 </form>
                 {user && <p className="text-danger">User does not exist</p>}
+                {emailUsed && (
+                    <p className="text-danger">Email already in use</p>
+                )}
                 <div className="login-form-other">
                     <div className="login-signup-now">
-                        New to Netflix?&nbsp;
-                        <a className=" " target="_self" href="/">
-                            Sign up now
-                        </a>
+                        {page ? "New to Netflix" : "Existing User"} &nbsp;
+                        <Link className=" " to={page ? "/register" : "/login"}>
+                            {page ? "Sign up now" : "Sign In"}
+                        </Link>
                     </div>
                 </div>
             </div>
