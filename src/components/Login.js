@@ -17,9 +17,30 @@ const Login = () => {
     const [password, setPassword] = useState();
     const [user, setUser] = useState(false);
     const [emailUsed, setEmailUsed] = useState(false);
+    const [emailValid, setEmailValid] = useState(true);
+    const [passwordValid, setPasswordValid] = useState(true);
     const auth = getAuth();
+
+    const validation = (fn, val) => {
+        switch (fn) {
+            case "email":
+                return val.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+            case "password":
+                return val.length >= 6;
+            default:
+                break;
+        }
+    };
+
     const onSignIn = (e) => {
         e.preventDefault();
+
+        if (!validation("email", email) || !validation("password", password)) {
+            setEmailValid(validation("email", email));
+            setPasswordValid(validation("password", password));
+            return;
+        }
+
         if (page) {
             signInWithEmailAndPassword(auth, email, password)
                 .then((auth) => {
@@ -51,6 +72,11 @@ const Login = () => {
         setPassword(p.target.value);
     };
 
+    useEffect(() => {
+        setUser(false);
+        setEmailUsed(false);
+    }, [location]);
+
     return (
         <div className="login">
             <div className="holder">
@@ -64,6 +90,9 @@ const Login = () => {
                         placeholder="Email"
                         onChange={emailChange}
                     />
+                    {!emailValid && (
+                        <p className="text-danger">Email is invalid</p>
+                    )}
                     <input
                         className="form-control"
                         value={password}
@@ -71,6 +100,9 @@ const Login = () => {
                         placeholder="Password"
                         onChange={passwordChange}
                     />
+                    {!passwordValid && (
+                        <p className="text-danger">Password is invalid</p>
+                    )}
                     <button
                         className="btn btn-danger btn-block"
                         onClick={onSignIn}
