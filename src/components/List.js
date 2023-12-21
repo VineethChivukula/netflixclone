@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const List = ({ title, param }) => {
     const [list, setList] = useState([]);
-    useEffect(() => {
+    useEffect((param) => {
         fetchData(param).then((res) => {
             setList(res.data.results);
         });

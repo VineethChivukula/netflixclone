@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 
 const Login = () => {
     const app = initializeApp(firebaseConfig);
+    console.log(app.options);
     const navigate = useNavigate();
     const location = useLocation();
     const page = location.pathname === "/login" ? true : false;
