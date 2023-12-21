@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import Header from "./components/Header";
+import Header from "./components/Header.js";
 import HomeBanner from "./components/HomeBanner";
 import Login from "./components/Login";
 import Banner from "./components/Banner";
@@ -26,7 +26,7 @@ function App() {
                         element={
                             <>
                                 <Header />
-                                <Login  />
+                                <Login />
                             </>
                         }
                     />
@@ -45,7 +45,15 @@ function App() {
                             <>
                                 <Header />
                                 <Banner />
-                                <List />
+                                <List
+                                    title="Netflix Originals"
+                                    param="originals"
+                                />
+                                <List title="Trending Now" param="trending" />
+                                <List title="Now Playing" param="now_playing" />
+                                <List title="Popular" param="popular" />
+                                <List title="Top Rated" param="top_rated" />
+                                <List title="Upcoming" param="upcoming" />
                             </>
                         }
                     />

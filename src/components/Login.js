@@ -20,7 +20,6 @@ const Login = () => {
     const [emailValid, setEmailValid] = useState(true);
     const [passwordValid, setPasswordValid] = useState(true);
     const auth = getAuth();
-
     const validation = (fn, val) => {
         switch (fn) {
             case "email":

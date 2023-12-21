@@ -29,7 +29,7 @@ const Header = () => {
                                 className="btn btn-danger"
                                 onClick={onSignIn}
                             >
-                                Signin
+                                Sign In
                             </button>
                         </form>
                     </div>
