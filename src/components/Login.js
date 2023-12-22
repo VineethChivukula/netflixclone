@@ -16,28 +16,48 @@ const Login = () => {
     const page = location.pathname === "/login" ? true : false;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [user, setUser] = useState(false);
-    const [emailUsed, setEmailUsed] = useState(false);
+    const [user, setUser] = useState();
+    const [emailUsed, setEmailUsed] = useState();
     const [emailValid, setEmailValid] = useState(true);
     const [passwordValid, setPasswordValid] = useState(true);
+    const [emailTouched, setEmailTouched] = useState(false);
+    const [passwordTouched, setPasswordTouched] = useState(false);
     const auth = getAuth();
-    const validation = (fn, val) => {
-        switch (fn) {
-            case "email":
-                return val.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-            case "password":
-                return val.length >= 6;
-            default:
-                break;
+
+    const validation = (type, value) => {
+        if (type === "email") {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(value);
+        } else if (type === "password") {
+            return value && value.length >= 8;
         }
+        return false;
+    };
+
+    const validateEmail = () => {
+        const isValid = validation("email", email);
+        setEmailValid(isValid);
+        return isValid;
+    };
+
+    const validatePassword = () => {
+        const isValid = validation("password", password);
+        setPasswordValid(isValid);
+        return isValid;
     };
 
     const onSignIn = (e) => {
         e.preventDefault();
 
-        if (!validation("email", email) || !validation("password", password)) {
-            setEmailValid(validation("email", email));
-            setPasswordValid(validation("password", password));
+        const isEmailValid = validateEmail();
+        const isPasswordValid = validatePassword();
+
+        if (!isEmailValid || !isPasswordValid || !password) {
+            return;
+        }
+
+
+        if (!isEmailValid || !isPasswordValid) {
             return;
         }
 
@@ -66,10 +86,12 @@ const Login = () => {
 
     const emailChange = (e) => {
         setEmail(e.target.value);
+        setEmailTouched(true);
     };
 
     const passwordChange = (p) => {
         setPassword(p.target.value);
+        setPasswordTouched(true);
     };
 
     useEffect(() => {
@@ -90,7 +112,7 @@ const Login = () => {
                         placeholder="Email"
                         onChange={emailChange}
                     />
-                    {!emailValid && (
+                    {!emailValid && emailTouched && (
                         <p className="text-danger">Email is invalid</p>
                     )}
                     <input
@@ -106,8 +128,8 @@ const Login = () => {
                             address. Please try again
                         </p>
                     )}
-                    {!password && (
-                        <p className="text-danger">Wrong Password, Please Try Again</p>
+                    {!passwordValid && passwordTouched && (
+                        <p className="text-danger">Password is invalid</p>
                     )}
                     <button
                         className="btn btn-danger btn-block"
@@ -136,9 +158,6 @@ const Login = () => {
 
                 {emailUsed && (
                     <p className="text-danger">Email already in use</p>
-                )}
-                {!passwordValid && (
-                    <p className="text-danger">Password is invalid</p>
                 )}
                 <div className="login-form-other">
                     <div className="login-signup-now">
