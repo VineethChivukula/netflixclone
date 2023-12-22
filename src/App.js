@@ -7,6 +7,10 @@ import Banner from "./components/Banner";
 import List from "./components/List";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+/**
+ * Renders the main application component.
+ * @returns {JSX.Element} The rendered App component.
+ */
 function App() {
     return (
         <>

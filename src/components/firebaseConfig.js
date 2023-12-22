@@ -1,5 +1,21 @@
 import { initializeApp } from "firebase/app";
 
+/**
+ * Firebase configuration object.
+ * @typedef {Object} FirebaseConfig
+ * @property {string} apiKey - The API key for Firebase.
+ * @property {string} authDomain - The authentication domain for Firebase.
+ * @property {string} projectId - The project ID for Firebase.
+ * @property {string} storageBucket - The storage bucket for Firebase.
+ * @property {string} messagingSenderId - The messaging sender ID for Firebase.
+ * @property {string} appId - The app ID for Firebase.
+ * @property {string} measurementId - The measurement ID for Firebase.
+ */
+
+/**
+ * Firebase configuration.
+ * @type {FirebaseConfig}
+ */
 export const firebaseConfig = {
     apiKey: "AIzaSyDlbihlDtHg4taH9ncZGr7oVW2FpnZLJXU",
     authDomain: "netflixclone-ef70d.firebaseapp.com",

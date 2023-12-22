@@ -1,3 +1,8 @@
+/**
+ * Renders the HomeBanner component.
+ * 
+ * @returns {JSX.Element} The rendered HomeBanner component.
+ */
 const HomeBanner = () => {
     return (
         <div className="home-banner">

@@ -1,6 +1,16 @@
 import axios from "axios";
 const URL = "https://api.themoviedb.org/3";
 const API_KEY = "dd13114bd186b510d8104618a4f45ebf";
+/**
+ * API endpoints for different categories.
+ * @type {Object}
+ * @property {string} originals - Endpoint for discovering TV shows.
+ * @property {string} trending - Endpoint for trending content.
+ * @property {string} now_playing - Endpoint for currently playing movies.
+ * @property {string} popular - Endpoint for popular movies.
+ * @property {string} top_rated - Endpoint for top rated movies.
+ * @property {string} upcoming - Endpoint for upcoming movies.
+ */
 const endpoints = {
     originals: "/discover/tv",
     trending: "/trending/all/week",

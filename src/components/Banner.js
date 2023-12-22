@@ -1,3 +1,8 @@
+/**
+ * Renders the banner component for the Netflix clone.
+ * 
+ * @returns {JSX.Element} The rendered banner component.
+ */
 const Banner = () => {
     return (
         <div className="banner">

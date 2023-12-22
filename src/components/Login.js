@@ -8,6 +8,11 @@ import {
 import { firebaseConfig } from "./firebaseConfig";
 import { useState, useEffect } from "react";
 
+/**
+ * Represents a Login component.
+ * 
+ * @returns {JSX.Element} The rendered Login component.
+ */
 const Login = () => {
     const app = initializeApp(firebaseConfig);
     console.log(app.options);

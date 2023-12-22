@@ -1,5 +1,10 @@
 import { useNavigate, Link } from "react-router-dom";
 
+/**
+ * Represents the Header component of the Netflix clone.
+ * @param {Object} props - The props object containing the component's properties.
+ * @returns {JSX.Element} The rendered Header component.
+ */
 const Header = (props) => {
     const navigate = useNavigate();
 

@@ -2,6 +2,14 @@ import { useEffect } from "react";
 import { fetchData } from "../api/api";
 import { useState } from "react";
 
+/**
+ * Renders a list component with a title and fetches data based on a parameter.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the list.
+ * @param {string} props.param - The parameter used to fetch data.
+ * @returns {JSX.Element} The rendered list component.
+ */
 const List = ({ title, param }) => {
     const [list, setList] = useState([]);
     useEffect(() => {
