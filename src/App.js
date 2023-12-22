@@ -17,7 +17,7 @@ function App() {
             <Router>
                 <Routes>
                     <Route
-                        path="/"
+                        path="/netflixclone"
                         element={
                             <>
                                 <Header buttonText="Sign In"/>
@@ -26,7 +26,7 @@ function App() {
                         }
                     />
                     <Route
-                        path="/login"
+                        path="/netflixclone/login"
                         element={
                             <>
                                 <Header buttonText="Sign In" />
@@ -35,7 +35,7 @@ function App() {
                         }
                     />
                     <Route
-                        path="/register"
+                        path="/netflixclone/register"
                         element={
                             <>
                                 <Header buttonText="Sign In"/>
@@ -44,7 +44,7 @@ function App() {
                         }
                     />
                     <Route
-                        path="/dashboard"
+                        path="/netflixclone/dashboard"
                         element={
                             <>
                                 <Header buttonText="Sign out" />

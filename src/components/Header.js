@@ -10,7 +10,7 @@ const Header = (props) => {
 
     const onSignIn = (e) => {
         e.preventDefault();
-        navigate("/login");
+        navigate("/netflixclone/login");
     };
 
     return (

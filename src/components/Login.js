@@ -18,7 +18,7 @@ const Login = () => {
     console.log(app.options);
     const navigate = useNavigate();
     const location = useLocation();
-    const page = location.pathname === "/login" ? true : false;
+    const page = location.pathname === "/netflixclone/login" ? true : false;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [user, setUser] = useState();
@@ -70,7 +70,7 @@ const Login = () => {
             signInWithEmailAndPassword(auth, email, password)
                 .then((auth) => {
                     if (auth) {
-                        navigate("/dashboard");
+                        navigate("/netflixclone/dashboard");
                     }
                 })
                 .catch((e) => {
@@ -80,7 +80,7 @@ const Login = () => {
             createUserWithEmailAndPassword(auth, email, password)
                 .then((auth) => {
                     if (auth) {
-                        navigate("/dashboard");
+                        navigate("/netflixclone/dashboard");
                     }
                 })
                 .catch((error) => {
@@ -167,7 +167,7 @@ const Login = () => {
                 <div className="login-form-other">
                     <div className="login-signup-now">
                         {page ? "New to Netflix" : "Existing User"} &nbsp;
-                        <Link className=" " to={page ? "/register" : "/login"}>
+                        <Link className=" " to={page ? "/netflixclone/register" : "/netflixclone/login"}>
                             {page ? "Sign up now" : "Sign In"}
                         </Link>
                     </div>
