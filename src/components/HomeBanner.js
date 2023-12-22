@@ -21,7 +21,10 @@ const HomeBanner = () => {
                         className="form-control"
                         placeholder="Email Address"
                     />
-                    <button className="btn-danger input-group-button text-white">
+                    <button
+                        className="input-group-button text-white"
+                        style={{ backgroundColor: "rgb(220,53,69)" }}
+                    >
                         Get Started
                     </button>
                 </div>

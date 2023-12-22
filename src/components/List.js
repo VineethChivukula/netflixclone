@@ -4,11 +4,12 @@ import { useState } from "react";
 
 const List = ({ title, param }) => {
     const [list, setList] = useState([]);
-    useEffect((param) => {
+    useEffect(() => {
         fetchData(param).then((res) => {
             setList(res.data.results);
         });
-    }, []);
+    }, [param]);
+
     return (
         <div className="list">
             <div className="row">

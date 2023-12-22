@@ -16,7 +16,7 @@ function App() {
                         path="/"
                         element={
                             <>
-                                <Header />
+                                <Header buttonText="Sign In"/>
                                 <HomeBanner />
                             </>
                         }
@@ -25,7 +25,7 @@ function App() {
                         path="/login"
                         element={
                             <>
-                                <Header />
+                                <Header buttonText="Sign In" />
                                 <Login />
                             </>
                         }
@@ -34,7 +34,7 @@ function App() {
                         path="/register"
                         element={
                             <>
-                                <Header />
+                                <Header buttonText="Sign In"/>
                                 <Login />
                             </>
                         }
@@ -43,7 +43,7 @@ function App() {
                         path="/dashboard"
                         element={
                             <>
-                                <Header />
+                                <Header buttonText="Sign out" />
                                 <Banner />
                                 <List
                                     title="Netflix Originals"

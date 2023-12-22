@@ -80,7 +80,7 @@ const Login = () => {
     return (
         <div className="login">
             <div className="holder">
-                <h1 className="text-white">{page ? "Sign in" : "Register"}</h1>
+                <h1 className="text-white">{page ? "Sign In" : "Register"}</h1>
                 <br />
                 <form>
                     <input
@@ -100,14 +100,20 @@ const Login = () => {
                         placeholder="Password"
                         onChange={passwordChange}
                     />
-                    {!passwordValid && (
-                        <p className="text-danger">Password is invalid</p>
+                    {user && (
+                        <p className="text-danger">
+                            Sorry, we can't find an account with this email
+                            address. Please try again
+                        </p>
+                    )}
+                    {!password && (
+                        <p className="text-danger">Wrong Password, Please Try Again</p>
                     )}
                     <button
                         className="btn btn-danger btn-block"
                         onClick={onSignIn}
                     >
-                        {page ? "Sign in" : "Register"}
+                        {page ? "Sign In" : "Register"}
                     </button>
                     <br />
                     {page && (
@@ -127,9 +133,12 @@ const Login = () => {
                         </div>
                     )}
                 </form>
-                {user && <p className="text-danger">User does not exist</p>}
+
                 {emailUsed && (
                     <p className="text-danger">Email already in use</p>
+                )}
+                {!passwordValid && (
+                    <p className="text-danger">Password is invalid</p>
                 )}
                 <div className="login-form-other">
                     <div className="login-signup-now">

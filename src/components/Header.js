@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
     const navigate = useNavigate();
 
     const onSignIn = (e) => {
@@ -29,7 +29,7 @@ const Header = () => {
                                 className="btn btn-danger"
                                 onClick={onSignIn}
                             >
-                                Sign In
+                                {props.buttonText}
                             </button>
                         </form>
                     </div>
